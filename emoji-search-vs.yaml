@@ -1,0 +1,18 @@
+apiVersion: networking.istio.io/v1beta1
+kind: VirtualService
+metadata:
+  labels:
+    app.kubernetes.io/name: emoji-search
+  name: emoji-search
+  namespace: default
+spec:
+  gateways:
+  - istio-system/public
+  hosts:
+  - emoji-search.bigbang.dev
+  http:
+  - route:
+    - destination:
+        host: emoji-search.default.svc.cluster.local
+        port:
+          number: 80

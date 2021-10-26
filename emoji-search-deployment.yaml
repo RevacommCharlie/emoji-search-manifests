@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: emoji-search
+spec:
+  replicas: 1
+  revisionHistoryLimit: 3
+  selector:
+    matchLabels:
+      app: emoji-search
+  template:
+    metadata:
+      labels:
+        app: emoji-search
+    spec:
+      containers:
+      - image: ghcr.io/revacommcharlie/emoji-search:main
+        name: emoji-search
+        ports:
+        - containerPort: 80
